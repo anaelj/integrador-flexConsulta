@@ -1,0 +1,9 @@
+*.dcu
+*.exe
+*.*~
+*.so
+*.o
+*.identcache
+*.apk
+*.zip
+*.7z
