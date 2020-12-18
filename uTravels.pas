@@ -28,6 +28,7 @@ type
     FDMemTableTravelstransportadora_id: TStringField;
     FDMemTableTravelscpfmotorista: TStringField;
     FDMemTableTravelsdata: TStringField;
+    FDMemTableTravelsmessage: TStringField;
   private
     { Private declarations }
   public

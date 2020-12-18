@@ -79,5 +79,9 @@ object FormDrivers: TFormDrivers
     object FDMemTableDrivercpf: TStringField
       FieldName = 'cpf'
     end
+    object FDMemTableDrivermessage: TStringField
+      FieldName = 'message'
+      Size = 250
+    end
   end
 end

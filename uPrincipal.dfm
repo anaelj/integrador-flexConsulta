@@ -2,8 +2,8 @@ object FormPrincipal: TFormPrincipal
   Left = 0
   Top = 0
   Caption = 'FormPrincipal'
-  ClientHeight = 642
-  ClientWidth = 1180
+  ClientHeight = 470
+  ClientWidth = 1000
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,6 +11,7 @@ object FormPrincipal: TFormPrincipal
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesktopCenter
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -195,13 +196,31 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 10
   end
   object btnTeste: TButton
-    Left = 936
-    Top = 568
+    Left = 776
+    Top = 408
     Width = 75
     Height = 25
     Caption = 'btnTeste'
     TabOrder = 11
     OnClick = btnTesteClick
+  end
+  object btnEnviaMotoristas: TButton
+    Left = 192
+    Top = 360
+    Width = 129
+    Height = 25
+    Caption = 'Envia Motoristas'
+    TabOrder = 12
+    OnClick = btnEnviaMotoristasClick
+  end
+  object btnEnviaViagens: TButton
+    Left = 352
+    Top = 360
+    Width = 129
+    Height = 25
+    Caption = 'Envia Viagens'
+    TabOrder = 13
+    OnClick = btnEnviaViagensClick
   end
   object FDConnectionSqlLite: TFDConnection
     Params.Strings = (
@@ -210,7 +229,6 @@ object FormPrincipal: TFormPrincipal
         'Database=C:\Users\Gabriela\Documents\flex-integrador\Win32\Debug' +
         '\flexconsulta.db'
       'DriverID=SQLite')
-    Connected = True
     LoginPrompt = False
     Left = 688
     Top = 384
@@ -289,13 +307,136 @@ object FormPrincipal: TFormPrincipal
       'Database=postgres'
       'User_Name=postgres'
       'Password=GACLA0923'
+      'ApplicationName=flexConsulta'
       'DriverID=PG')
+    Connected = True
     LoginPrompt = False
     Left = 896
     Top = 408
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
-    Left = 1000
-    Top = 440
+    VendorHome = '../'
+    Left = 912
+    Top = 352
+  end
+  object fdQryConsultaMotorista: TFDQuery
+    Connection = FDConnectionPG
+    SQL.Strings = (
+      'select codmotorista, nome, cpf from motorista '
+      'where codmotorista > :codmotorista and (not cpf is null)'
+      'order by codmotorista')
+    Left = 896
+    Top = 232
+    ParamData = <
+      item
+        Name = 'CODMOTORISTA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object fdQryConsultaMotoristacodmotorista: TIntegerField
+      FieldName = 'codmotorista'
+      Origin = 'codmotorista'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object fdQryConsultaMotoristanome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 70
+    end
+    object fdQryConsultaMotoristacpf: TWideStringField
+      FieldName = 'cpf'
+      Origin = 'cpf'
+      Size = 14
+    end
+  end
+  object fdQryConsultaViagens: TFDQuery
+    Connection = FDConnectionPG
+    SQL.Strings = (
+      'select '
+      #9'distinct'
+      ''
+      'ct.numero as numeroviagem, '
+      'concat( ct.numeroconhecimento, '#39'-'#39' ,ct.serie )  as cte,'
+      'concat (cd1.nome, '#39'-'#39', cd1.uf) as origem,'
+      'concat (cd2.nome, '#39'-'#39', cd2.uf) as destino,'
+      'merc.descricao as mercadoria,'
+      
+        'concat (vei.placa, '#39', '#39', coalesce(cr1.placa, vei.placacarreta), ' +
+        #39', '#39', coalesce(cr2.placa, vei.placacarreta2) ) placa,'
+      'mot.cpf as cpfmotorista,'
+      'ct.data'
+      ''
+      'from conhecimento ct'
+      #9'join cidade cd1 on ct.codcidadeorigem = cd1.codcidade  '
+      #9'join cidade cd2 on ct.codcidadedestino = cd2.codcidade  '
+      #9'join mercadoria merc on merc.codmercadoria = ct.codmercadoria '
+      #9'join veiculo vei on ct.codveiculo = vei.codveiculo'
+      #9'join motorista mot on mot.codmotorista  = ct.codmotorista '
+      #9'left join veiculo cr1 on vei.codcarreta = cr1.codveiculo '
+      #9'left join veiculo cr2 on vei.codcarreta2 = cr2.codveiculo '
+      ''
+      'where ct.numero > :numero'
+      'and numeroconhecimento > 0'
+      'and ct.ctestatus = '#39'2'#39
+      'and ct.tipocte = '#39'0'#39
+      'order by ct.numero')
+    Left = 888
+    Top = 144
+    ParamData = <
+      item
+        Name = 'NUMERO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object fdQryConsultaViagensnumeroviagem: TIntegerField
+      FieldName = 'numeroviagem'
+      Origin = 'numeroviagem'
+    end
+    object fdQryConsultaViagenscte: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'cte'
+      Origin = 'cte'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object fdQryConsultaViagensorigem: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'origem'
+      Origin = 'origem'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object fdQryConsultaViagensdestino: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'destino'
+      Origin = 'destino'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object fdQryConsultaViagensmercadoria: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'mercadoria'
+      Origin = 'mercadoria'
+      Size = 100
+    end
+    object fdQryConsultaViagensplaca: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'placa'
+      Origin = 'placa'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object fdQryConsultaViagenscpfmotorista: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cpfmotorista'
+      Origin = 'cpfmotorista'
+      Size = 14
+    end
+    object fdQryConsultaViagensdata: TSQLTimeStampField
+      FieldName = 'data'
+      Origin = 'data'
+    end
   end
 end

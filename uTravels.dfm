@@ -104,5 +104,9 @@ object FormTravels: TFormTravels
     object FDMemTableTravelsdata: TStringField
       FieldName = 'data'
     end
+    object FDMemTableTravelsmessage: TStringField
+      FieldName = 'message'
+      Size = 250
+    end
   end
 end

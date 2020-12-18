@@ -21,6 +21,7 @@ type
     FDMemTableDriverid: TStringField;
     FDMemTableDrivername: TStringField;
     FDMemTableDrivercpf: TStringField;
+    FDMemTableDrivermessage: TStringField;
   private
     { Private declarations }
   public
@@ -48,13 +49,13 @@ begin
     RESTRequestDriver.Params.Items[1].Value := Format(jsonCreateDriver, [pName, pCPF]);
 
     RESTRequestDriver.Execute;
-    ShowMessage( RESTResponseDriver.Content);
+//    ShowMessage( RESTResponseDriver.Content);
 
     Result := FDMemTableDriverid.AsString;
 
   except
     on E: Exception do
-      Result := '';
+      Result := E.Message;
   end;
 
 end;
