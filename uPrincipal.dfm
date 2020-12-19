@@ -13,7 +13,6 @@ object FormPrincipal: TFormPrincipal
   OldCreateOrder = False
   Position = poDesktopCenter
   OnCreate = FormCreate
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lblUsuarioFlex: TLabel
@@ -58,7 +57,7 @@ object FormPrincipal: TFormPrincipal
   end
   object lblUltimoMotorista: TLabel
     Left = 120
-    Top = 248
+    Top = 244
     Width = 99
     Height = 13
     Caption = #218'ltimo Motorista SAT'
@@ -66,7 +65,7 @@ object FormPrincipal: TFormPrincipal
   end
   object lblMotoristaFlex: TLabel
     Left = 120
-    Top = 296
+    Top = 288
     Width = 110
     Height = 13
     Caption = 'Motorista FlexConsulta'
@@ -74,7 +73,7 @@ object FormPrincipal: TFormPrincipal
   end
   object lblViagemFlex: TLabel
     Left = 526
-    Top = 296
+    Top = 288
     Width = 99
     Height = 13
     Caption = 'Viagem FlexConsulta'
@@ -82,19 +81,27 @@ object FormPrincipal: TFormPrincipal
   end
   object lblViagemSAT: TLabel
     Left = 260
-    Top = 248
+    Top = 244
     Width = 88
     Height = 13
     Caption = #218'ltima Viagem SAT'
     FocusControl = dbedtULTIMA_VIAGEM_SAT
   end
-  object lblCaminhoPG: TLabel
+  object lblServidorPG: TLabel
     Left = 120
-    Top = 200
-    Width = 57
+    Top = 199
+    Width = 56
     Height = 13
-    Caption = 'Caminho PG'
-    FocusControl = dbedtCAMINHO_PG
+    Caption = 'Servidor PG'
+    FocusControl = dbedtServidor_PG
+  end
+  object Label1: TLabel
+    Left = 426
+    Top = 199
+    Width = 45
+    Height = 13
+    Caption = 'Banco PG'
+    FocusControl = dbedtBANCO_PG
   end
   object dbedtUSUARIO_FLEX: TDBEdit
     Left = 120
@@ -143,48 +150,39 @@ object FormPrincipal: TFormPrincipal
   end
   object dbedtULTIMO_MOTORISTA_SAT: TDBEdit
     Left = 120
-    Top = 264
+    Top = 260
     Width = 134
     Height = 21
     DataField = 'ULTIMO_MOTORISTA_SAT'
     DataSource = dsConfiguracoes
-    TabOrder = 6
+    TabOrder = 7
   end
   object dbedtMOTORISTA_FLEX: TDBEdit
     Left = 120
-    Top = 312
+    Top = 304
     Width = 400
     Height = 21
     DataField = 'MOTORISTA_FLEX'
     DataSource = dsConfiguracoes
-    TabOrder = 8
+    TabOrder = 9
   end
   object dbedtVIAGEM_FLEX: TDBEdit
     Left = 526
-    Top = 312
+    Top = 304
     Width = 400
     Height = 21
     DataField = 'VIAGEM_FLEX'
     DataSource = dsConfiguracoes
-    TabOrder = 9
+    TabOrder = 10
   end
   object dbedtULTIMA_VIAGEM_SAT: TDBEdit
     Left = 260
-    Top = 264
+    Top = 260
     Width = 134
     Height = 21
     DataField = 'ULTIMA_VIAGEM_SAT'
     DataSource = dsConfiguracoes
-    TabOrder = 7
-  end
-  object dbedtCAMINHO_PG: TDBEdit
-    Left = 120
-    Top = 219
-    Width = 606
-    Height = 21
-    DataField = 'CAMINHO_PG'
-    DataSource = dsConfiguracoes
-    TabOrder = 5
+    TabOrder = 8
   end
   object dbnvgr1: TDBNavigator
     Left = 120
@@ -193,56 +191,76 @@ object FormPrincipal: TFormPrincipal
     Height = 55
     DataSource = dsConfiguracoes
     VisibleButtons = [nbInsert, nbEdit, nbPost, nbCancel, nbRefresh]
-    TabOrder = 10
+    TabOrder = 11
   end
   object btnTeste: TButton
     Left = 776
-    Top = 408
+    Top = 379
     Width = 75
     Height = 25
     Caption = 'btnTeste'
-    TabOrder = 11
+    TabOrder = 12
     OnClick = btnTesteClick
   end
   object btnEnviaMotoristas: TButton
-    Left = 192
-    Top = 360
+    Left = 168
+    Top = 379
     Width = 129
     Height = 25
     Caption = 'Envia Motoristas'
-    TabOrder = 12
+    TabOrder = 13
     OnClick = btnEnviaMotoristasClick
   end
   object btnEnviaViagens: TButton
-    Left = 352
-    Top = 360
+    Left = 328
+    Top = 379
     Width = 129
     Height = 25
     Caption = 'Envia Viagens'
-    TabOrder = 13
+    TabOrder = 14
     OnClick = btnEnviaViagensClick
+  end
+  object dbedtServidor_PG: TDBEdit
+    Left = 120
+    Top = 217
+    Width = 300
+    Height = 21
+    DataField = 'SERVIDOR_PG'
+    DataSource = dsConfiguracoes
+    TabOrder = 5
+  end
+  object dbedtBANCO_PG: TDBEdit
+    Left = 426
+    Top = 218
+    Width = 300
+    Height = 21
+    DataField = 'BANCO_PG'
+    DataSource = dsConfiguracoes
+    TabOrder = 6
   end
   object FDConnectionSqlLite: TFDConnection
     Params.Strings = (
       'LockingMode=Normal'
       
-        'Database=C:\Users\Gabriela\Documents\flex-integrador\Win32\Debug' +
-        '\flexconsulta.db'
+        'Database=C:\Users\Gabriela\Documents\integrador-flexConsulta\Win' +
+        '32\Debug\configuracoes-flexconsulta.db'
       'DriverID=SQLite')
+    ConnectedStoredUsage = []
+    Connected = True
     LoginPrompt = False
-    Left = 688
-    Top = 384
+    Left = 696
+    Top = 25
   end
   object FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink
-    Left = 592
-    Top = 384
+    Left = 696
+    Top = 57
   end
   object fdQryConfiguracoes: TFDQuery
     Connection = FDConnectionSqlLite
     SQL.Strings = (
       'select * from configuracoes')
-    Left = 472
-    Top = 400
+    Left = 584
+    Top = 385
     object fdQryConfiguracoesID: TIntegerField
       FieldName = 'ID'
       Origin = 'ID'
@@ -286,21 +304,26 @@ object FormPrincipal: TFormPrincipal
       FieldName = 'ULTIMA_VIAGEM_SAT'
       Origin = 'ULTIMA_VIAGEM_SAT'
     end
-    object fdQryConfiguracoesCAMINHO_PG: TStringField
-      FieldName = 'CAMINHO_PG'
-      Origin = 'CAMINHO_PG'
-      Size = 100
-    end
     object fdQryConfiguracoesTRANSPORTADORA_ID: TStringField
       FieldName = 'TRANSPORTADORA_ID'
       Origin = 'TRANSPORTADORA_ID'
       Size = 100
     end
+    object fdQryConfiguracoesSERVIDOR_PG: TStringField
+      FieldName = 'SERVIDOR_PG'
+      Origin = 'SERVIDOR_PG'
+      Size = 100
+    end
+    object fdQryConfiguracoesBANCO_PG: TStringField
+      FieldName = 'BANCO_PG'
+      Origin = 'BANCO_PG'
+      Size = 50
+    end
   end
   object dsConfiguracoes: TDataSource
     DataSet = fdQryConfiguracoes
     Left = 360
-    Top = 392
+    Top = 345
   end
   object FDConnectionPG: TFDConnection
     Params.Strings = (
@@ -309,15 +332,15 @@ object FormPrincipal: TFormPrincipal
       'Password=GACLA0923'
       'ApplicationName=flexConsulta'
       'DriverID=PG')
-    Connected = True
+    ConnectedStoredUsage = []
     LoginPrompt = False
-    Left = 896
-    Top = 408
+    Left = 856
+    Top = 17
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorHome = '../'
     Left = 912
-    Top = 352
+    Top = 305
   end
   object fdQryConsultaMotorista: TFDQuery
     Connection = FDConnectionPG
@@ -326,7 +349,7 @@ object FormPrincipal: TFormPrincipal
       'where codmotorista > :codmotorista and (not cpf is null)'
       'order by codmotorista')
     Left = 896
-    Top = 232
+    Top = 185
     ParamData = <
       item
         Name = 'CODMOTORISTA'
@@ -438,5 +461,10 @@ object FormPrincipal: TFormPrincipal
       FieldName = 'data'
       Origin = 'data'
     end
+  end
+  object Timer1: TTimer
+    Interval = 300000
+    Left = 32
+    Top = 408
   end
 end

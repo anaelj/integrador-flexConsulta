@@ -26,7 +26,6 @@ type
     fdQryConfiguracoesMOTORISTA_FLEX: TStringField;
     fdQryConfiguracoesVIAGEM_FLEX: TStringField;
     fdQryConfiguracoesULTIMA_VIAGEM_SAT: TIntegerField;
-    fdQryConfiguracoesCAMINHO_PG: TStringField;
     lblUsuarioFlex: TLabel;
     dbedtUSUARIO_FLEX: TDBEdit;
     dsConfiguracoes: TDataSource;
@@ -46,8 +45,6 @@ type
     dbedtVIAGEM_FLEX: TDBEdit;
     lblViagemSAT: TLabel;
     dbedtULTIMA_VIAGEM_SAT: TDBEdit;
-    lblCaminhoPG: TLabel;
-    dbedtCAMINHO_PG: TDBEdit;
     dbnvgr1: TDBNavigator;
     fdQryConfiguracoesTRANSPORTADORA_ID: TStringField;
     FDConnectionPG: TFDConnection;
@@ -68,12 +65,20 @@ type
     fdQryConsultaViagensplaca: TWideMemoField;
     fdQryConsultaViagenscpfmotorista: TWideStringField;
     fdQryConsultaViagensdata: TSQLTimeStampField;
+    lblServidorPG: TLabel;
+    dbedtServidor_PG: TDBEdit;
+    fdQryConfiguracoesSERVIDOR_PG: TStringField;
+    fdQryConfiguracoesBANCO_PG: TStringField;
+    Label1: TLabel;
+    dbedtBANCO_PG: TDBEdit;
+    Timer1: TTimer;
     procedure FormCreate(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure btnTesteClick(Sender: TObject);
     procedure btnEnviaMotoristasClick(Sender: TObject);
     procedure btnEnviaViagensClick(Sender: TObject);
   private
+    procedure enviaMotoristas;
+    procedure enviaViagens;
     { Private declarations }
   public
     { Public declarations }
@@ -90,7 +95,7 @@ uses
 {$R *.dfm}
 
 
-procedure TFormPrincipal.btnEnviaMotoristasClick(Sender: TObject);
+procedure TFormPrincipal.enviaMotoristas;
 var uuidMotorista : string;
 token : string;
 begin
@@ -119,16 +124,20 @@ begin
         end
         else
         begin
-          ShowMessage(FormDrivers.FDMemTableDrivermessage.AsString);
+//          ShowMessage(FormDrivers.FDMemTableDrivermessage.AsString);
           Break;
         end;
 //        Sleep(300);
     end;
     fdQryConsultaMotorista.Close;
-
 end;
 
-procedure TFormPrincipal.btnEnviaViagensClick(Sender: TObject);
+procedure TFormPrincipal.btnEnviaMotoristasClick(Sender: TObject);
+begin
+  enviaMotoristas;
+end;
+
+procedure TFormPrincipal.enviaViagens ;
 var uuidViagem : string;
 token : string;
 begin
@@ -167,13 +176,18 @@ begin
         end
         else
         begin
-          ShowMessage(FormTravels.FDMemTabletravelsmessage.AsString);
+//          ShowMessage(FormTravels.FDMemTabletravelsmessage.AsString);
           Break;
         end;
 //        Sleep(300);
     end;
     fdQryConsultaViagens.Close;
 
+end;
+
+procedure TFormPrincipal.btnEnviaViagensClick(Sender: TObject);
+begin
+  enviaViagens;
 end;
 
 procedure TFormPrincipal.btnTesteClick(Sender: TObject);
@@ -201,7 +215,7 @@ begin
   FDPhysPgDriverLink1.VendorHome := ExtractFilePath( Application.ExeName);
 
 FDConnectionSqlLite.Params.Database :=  ExtractFilePath( Application.ExeName) +
-    'flexconsulta.db';
+    'configuracoes-flexconsulta.db';
   FDConnectionSqlLite.Connected := true;
 
   FDConnectionSqlLite.ExecSQL(' CREATE TABLE IF NOT EXISTS CONFIGURACOES ( ' +
@@ -215,15 +229,24 @@ FDConnectionSqlLite.Params.Database :=  ExtractFilePath( Application.ExeName) +
     ' MOTORISTA_FLEX VARCHAR(100),' +
     ' VIAGEM_FLEX VARCHAR(100),' +
     ' ULTIMA_VIAGEM_SAT INTEGER,' +
-    ' CAMINHO_PG VARCHAR(100) ); ');
+    ' SERVIDOR_PG VARCHAR(50), '+
+    ' BANCO_PG VARCHAR(50) ); ');
 
   FDConnectionSqlLite.Connected := False;
   FDConnectionSqlLite.Connected := true;
-end;
 
-procedure TFormPrincipal.FormShow(Sender: TObject);
-begin
   fdQryConfiguracoes.Open;
+
+  if not fdQryConfiguracoesBANCO_PG.AsString.IsEmpty then
+  begin
+    FDConnectionPG.Params.Database := fdQryConfiguracoesBANCO_PG.AsString;
+    FDConnectionPG.Params.Password := fdQryConfiguracoesSENHA_PG.AsString;
+    FDConnectionPG.Params.UserName := fdQryConfiguracoesUSUARIO_PG.AsString;
+    FDConnectionPG.Params.Values['server'] := fdQryConfiguracoesSERVIDOR_PG.AsString;
+    FDConnectionPG.Connected := True;
+  end;
+
+
 end;
 
 end.
