@@ -200,15 +200,17 @@ object FormPrincipal: TFormPrincipal
     Height = 25
     Caption = 'btnTeste'
     TabOrder = 12
+    Visible = False
     OnClick = btnTesteClick
   end
   object btnEnviaMotoristas: TButton
-    Left = 168
+    Left = 176
     Top = 379
     Width = 129
     Height = 25
     Caption = 'Envia Motoristas'
     TabOrder = 13
+    Visible = False
     OnClick = btnEnviaMotoristasClick
   end
   object btnEnviaViagens: TButton
@@ -218,6 +220,7 @@ object FormPrincipal: TFormPrincipal
     Height = 25
     Caption = 'Envia Viagens'
     TabOrder = 14
+    Visible = False
     OnClick = btnEnviaViagensClick
   end
   object dbedtServidor_PG: TDBEdit
@@ -246,7 +249,6 @@ object FormPrincipal: TFormPrincipal
         '32\Debug\configuracoes-flexconsulta.db'
       'DriverID=SQLite')
     ConnectedStoredUsage = []
-    Connected = True
     LoginPrompt = False
     Left = 696
     Top = 25
@@ -464,7 +466,14 @@ object FormPrincipal: TFormPrincipal
   end
   object Timer1: TTimer
     Interval = 300000
+    OnTimer = Timer1Timer
     Left = 32
+    Top = 408
+  end
+  object Timer2: TTimer
+    Interval = 86400000
+    OnTimer = Timer2Timer
+    Left = 88
     Top = 408
   end
 end

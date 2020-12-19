@@ -72,10 +72,13 @@ type
     Label1: TLabel;
     dbedtBANCO_PG: TDBEdit;
     Timer1: TTimer;
+    Timer2: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure btnTesteClick(Sender: TObject);
     procedure btnEnviaMotoristasClick(Sender: TObject);
     procedure btnEnviaViagensClick(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure Timer2Timer(Sender: TObject);
   private
     procedure enviaMotoristas;
     procedure enviaViagens;
@@ -246,6 +249,43 @@ FDConnectionSqlLite.Params.Database :=  ExtractFilePath( Application.ExeName) +
     FDConnectionPG.Connected := True;
   end;
 
+
+end;
+
+procedure TFormPrincipal.Timer1Timer(Sender: TObject);
+begin
+  Timer1.Enabled := False;
+  Timer2.Enabled := False;
+  try
+    enviaMotoristas;
+  except on E: Exception do
+  end;
+  try
+    enviaViagens;
+  except on E: Exception do
+  end;
+  Timer1.Enabled := true;
+  Timer2.Enabled := true;
+end;
+
+procedure TFormPrincipal.Timer2Timer(Sender: TObject);
+begin
+  Timer1.Enabled := False;
+  Timer2.Enabled := False;
+  fdQryConfiguracoes.Edit;
+  fdQryConfiguracoesULTIMA_VIAGEM_SAT.AsInteger := fdQryConfiguracoesULTIMA_VIAGEM_SAT.AsInteger - 500;
+  fdQryConfiguracoesULTIMO_MOTORISTA_SAT.AsInteger := fdQryConfiguracoesULTIMO_MOTORISTA_SAT.AsInteger - 500;
+  fdQryConfiguracoes.Post;
+  try
+    enviaMotoristas;
+  except on E: Exception do
+  end;
+  try
+    enviaViagens;
+  except on E: Exception do
+  end;
+  Timer1.Enabled := true;
+  Timer2.Enabled := true;
 
 end;
 
