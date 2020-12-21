@@ -48,7 +48,6 @@ type
     dbnvgr1: TDBNavigator;
     fdQryConfiguracoesTRANSPORTADORA_ID: TStringField;
     FDConnectionPG: TFDConnection;
-    btnTeste: TButton;
     FDPhysPgDriverLink1: TFDPhysPgDriverLink;
     fdQryConsultaMotorista: TFDQuery;
     fdQryConsultaMotoristacodmotorista: TIntegerField;
@@ -102,6 +101,9 @@ procedure TFormPrincipal.enviaMotoristas;
 var uuidMotorista : string;
 token : string;
 begin
+  fdQryConfiguracoes.First;
+  while not  fdQryConfiguracoes.Eof do
+  begin
     fdQryConsultaMotorista.ParamByName('codmotorista').AsInteger := fdQryConfiguracoesULTIMO_MOTORISTA_SAT.AsInteger;
     fdQryConsultaMotorista.Open;
     fdQryConsultaMotorista.First;
@@ -133,6 +135,8 @@ begin
 //        Sleep(300);
     end;
     fdQryConsultaMotorista.Close;
+    fdQryConfiguracoes.Next;
+  end;
 end;
 
 procedure TFormPrincipal.btnEnviaMotoristasClick(Sender: TObject);
@@ -144,6 +148,9 @@ procedure TFormPrincipal.enviaViagens ;
 var uuidViagem : string;
 token : string;
 begin
+  fdQryConfiguracoes.First;
+  while not  fdQryConfiguracoes.Eof do
+  begin
     fdQryConsultaViagens.ParamByName('numero').AsInteger := fdQryConfiguracoesULTIMA_VIAGEM_SAT.AsInteger;
     fdQryConsultaViagens.Open;
     fdQryConsultaViagens.First;
@@ -185,6 +192,8 @@ begin
 //        Sleep(300);
     end;
     fdQryConsultaViagens.Close;
+    fdQryConfiguracoes.Next;
+  end;
 
 end;
 

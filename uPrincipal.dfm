@@ -1,9 +1,9 @@
 object FormPrincipal: TFormPrincipal
   Left = 0
   Top = 0
-  Caption = 'FormPrincipal'
-  ClientHeight = 470
-  ClientWidth = 1000
+  Caption = 'Configura'#231#245'es'
+  ClientHeight = 464
+  ClientWidth = 1056
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,101 +11,101 @@ object FormPrincipal: TFormPrincipal
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poScreenCenter
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object lblUsuarioFlex: TLabel
-    Left = 120
-    Top = 112
+    Left = 24
+    Top = 120
     Width = 101
     Height = 13
     Caption = 'Usu'#225'rio FlexConsulta'
     FocusControl = dbedtUSUARIO_FLEX
   end
   object lblSenhaFlex: TLabel
-    Left = 526
-    Top = 112
+    Left = 430
+    Top = 120
     Width = 95
     Height = 13
     Caption = 'Senha FlexConsulta'
     FocusControl = dbedtSENHA_FLEX
   end
   object lblTransportadoraID: TLabel
-    Left = 120
-    Top = 69
+    Left = 24
+    Top = 77
     Width = 89
     Height = 13
     Caption = 'ID Transportadora'
     FocusControl = dbedtTRANSPORTADORA_ID
   end
   object lblUsuarioPG: TLabel
-    Left = 120
-    Top = 156
+    Left = 24
+    Top = 164
     Width = 52
     Height = 13
     Caption = 'Usu'#225'rio PG'
     FocusControl = dbedtUSUARIO_PG
   end
   object lblSenhaPG: TLabel
-    Left = 426
-    Top = 156
+    Left = 330
+    Top = 164
     Width = 46
     Height = 13
     Caption = 'Senha PG'
     FocusControl = dbedtSENHA_PG
   end
   object lblUltimoMotorista: TLabel
-    Left = 120
-    Top = 244
+    Left = 24
+    Top = 252
     Width = 99
     Height = 13
     Caption = #218'ltimo Motorista SAT'
     FocusControl = dbedtULTIMO_MOTORISTA_SAT
   end
   object lblMotoristaFlex: TLabel
-    Left = 120
-    Top = 288
+    Left = 24
+    Top = 296
     Width = 110
     Height = 13
     Caption = 'Motorista FlexConsulta'
     FocusControl = dbedtMOTORISTA_FLEX
   end
   object lblViagemFlex: TLabel
-    Left = 526
-    Top = 288
+    Left = 430
+    Top = 296
     Width = 99
     Height = 13
     Caption = 'Viagem FlexConsulta'
     FocusControl = dbedtVIAGEM_FLEX
   end
   object lblViagemSAT: TLabel
-    Left = 260
-    Top = 244
+    Left = 164
+    Top = 252
     Width = 88
     Height = 13
     Caption = #218'ltima Viagem SAT'
     FocusControl = dbedtULTIMA_VIAGEM_SAT
   end
   object lblServidorPG: TLabel
-    Left = 120
-    Top = 199
+    Left = 24
+    Top = 207
     Width = 56
     Height = 13
     Caption = 'Servidor PG'
     FocusControl = dbedtServidor_PG
   end
   object Label1: TLabel
-    Left = 426
-    Top = 199
+    Left = 330
+    Top = 207
     Width = 45
     Height = 13
     Caption = 'Banco PG'
     FocusControl = dbedtBANCO_PG
   end
   object dbedtUSUARIO_FLEX: TDBEdit
-    Left = 120
-    Top = 128
+    Left = 24
+    Top = 136
     Width = 400
     Height = 21
     DataField = 'USUARIO_FLEX'
@@ -113,8 +113,8 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 1
   end
   object dbedtSENHA_FLEX: TDBEdit
-    Left = 526
-    Top = 128
+    Left = 430
+    Top = 136
     Width = 300
     Height = 21
     DataField = 'SENHA_FLEX'
@@ -122,8 +122,8 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 2
   end
   object dbedtTRANSPORTADORA_ID: TDBEdit
-    Left = 120
-    Top = 85
+    Left = 24
+    Top = 93
     Width = 400
     Height = 21
     DataField = 'TRANSPORTADORA_ID'
@@ -131,8 +131,8 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 0
   end
   object dbedtUSUARIO_PG: TDBEdit
-    Left = 120
-    Top = 172
+    Left = 24
+    Top = 180
     Width = 300
     Height = 21
     DataField = 'USUARIO_PG'
@@ -140,8 +140,8 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 3
   end
   object dbedtSENHA_PG: TDBEdit
-    Left = 426
-    Top = 172
+    Left = 330
+    Top = 180
     Width = 300
     Height = 21
     DataField = 'SENHA_PG'
@@ -149,8 +149,8 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 4
   end
   object dbedtULTIMO_MOTORISTA_SAT: TDBEdit
-    Left = 120
-    Top = 260
+    Left = 24
+    Top = 268
     Width = 134
     Height = 21
     DataField = 'ULTIMO_MOTORISTA_SAT'
@@ -158,8 +158,8 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 7
   end
   object dbedtMOTORISTA_FLEX: TDBEdit
-    Left = 120
-    Top = 304
+    Left = 24
+    Top = 312
     Width = 400
     Height = 21
     DataField = 'MOTORISTA_FLEX'
@@ -167,8 +167,8 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 9
   end
   object dbedtVIAGEM_FLEX: TDBEdit
-    Left = 526
-    Top = 304
+    Left = 430
+    Top = 312
     Width = 400
     Height = 21
     DataField = 'VIAGEM_FLEX'
@@ -176,8 +176,8 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 10
   end
   object dbedtULTIMA_VIAGEM_SAT: TDBEdit
-    Left = 260
-    Top = 260
+    Left = 164
+    Top = 268
     Width = 134
     Height = 21
     DataField = 'ULTIMA_VIAGEM_SAT'
@@ -185,47 +185,39 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 8
   end
   object dbnvgr1: TDBNavigator
-    Left = 120
-    Top = 8
-    Width = 455
+    Left = 24
+    Top = 16
+    Width = 448
     Height = 55
+    Margins.Left = 5
+    Margins.Right = 5
     DataSource = dsConfiguracoes
-    VisibleButtons = [nbInsert, nbEdit, nbPost, nbCancel, nbRefresh]
+    VisibleButtons = [nbPrior, nbNext, nbInsert, nbEdit, nbPost, nbCancel, nbRefresh]
     TabOrder = 11
   end
-  object btnTeste: TButton
-    Left = 776
-    Top = 379
-    Width = 75
-    Height = 25
-    Caption = 'btnTeste'
-    TabOrder = 12
-    Visible = False
-    OnClick = btnTesteClick
-  end
   object btnEnviaMotoristas: TButton
-    Left = 176
-    Top = 379
+    Left = 768
+    Top = 91
     Width = 129
     Height = 25
     Caption = 'Envia Motoristas'
-    TabOrder = 13
+    TabOrder = 12
     Visible = False
     OnClick = btnEnviaMotoristasClick
   end
   object btnEnviaViagens: TButton
-    Left = 328
-    Top = 379
+    Left = 768
+    Top = 122
     Width = 129
     Height = 25
     Caption = 'Envia Viagens'
-    TabOrder = 14
+    TabOrder = 13
     Visible = False
     OnClick = btnEnviaViagensClick
   end
   object dbedtServidor_PG: TDBEdit
-    Left = 120
-    Top = 217
+    Left = 24
+    Top = 225
     Width = 300
     Height = 21
     DataField = 'SERVIDOR_PG'
@@ -233,8 +225,8 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 5
   end
   object dbedtBANCO_PG: TDBEdit
-    Left = 426
-    Top = 218
+    Left = 330
+    Top = 226
     Width = 300
     Height = 21
     DataField = 'BANCO_PG'
@@ -250,19 +242,19 @@ object FormPrincipal: TFormPrincipal
       'DriverID=SQLite')
     ConnectedStoredUsage = []
     LoginPrompt = False
-    Left = 696
-    Top = 25
+    Left = 600
+    Top = 33
   end
   object FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink
-    Left = 696
-    Top = 57
+    Left = 600
+    Top = 65
   end
   object fdQryConfiguracoes: TFDQuery
     Connection = FDConnectionSqlLite
     SQL.Strings = (
       'select * from configuracoes')
-    Left = 584
-    Top = 385
+    Left = 664
+    Top = 25
     object fdQryConfiguracoesID: TIntegerField
       FieldName = 'ID'
       Origin = 'ID'
@@ -324,8 +316,8 @@ object FormPrincipal: TFormPrincipal
   end
   object dsConfiguracoes: TDataSource
     DataSet = fdQryConfiguracoes
-    Left = 360
-    Top = 345
+    Left = 688
+    Top = 185
   end
   object FDConnectionPG: TFDConnection
     Params.Strings = (
@@ -336,13 +328,13 @@ object FormPrincipal: TFormPrincipal
       'DriverID=PG')
     ConnectedStoredUsage = []
     LoginPrompt = False
-    Left = 856
-    Top = 17
+    Left = 760
+    Top = 25
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorHome = '../'
-    Left = 912
-    Top = 305
+    Left = 688
+    Top = 81
   end
   object fdQryConsultaMotorista: TFDQuery
     Connection = FDConnectionPG
@@ -350,8 +342,8 @@ object FormPrincipal: TFormPrincipal
       'select codmotorista, nome, cpf from motorista '
       'where codmotorista > :codmotorista and (not cpf is null)'
       'order by codmotorista')
-    Left = 896
-    Top = 185
+    Left = 800
+    Top = 193
     ParamData = <
       item
         Name = 'CODMOTORISTA'
@@ -406,8 +398,8 @@ object FormPrincipal: TFormPrincipal
       'and ct.ctestatus = '#39'2'#39
       'and ct.tipocte = '#39'0'#39
       'order by ct.numero')
-    Left = 888
-    Top = 144
+    Left = 792
+    Top = 152
     ParamData = <
       item
         Name = 'NUMERO'
@@ -465,15 +457,15 @@ object FormPrincipal: TFormPrincipal
     end
   end
   object Timer1: TTimer
-    Interval = 300000
+    Interval = 3000
     OnTimer = Timer1Timer
-    Left = 32
-    Top = 408
+    Left = 65448
+    Top = 320
   end
   object Timer2: TTimer
     Interval = 86400000
     OnTimer = Timer2Timer
-    Left = 88
-    Top = 408
+    Left = 65504
+    Top = 320
   end
 end
